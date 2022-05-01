@@ -1,0 +1,129 @@
+{
+	"info": {
+		"_postman_id": "bdddcb50-09ea-4929-99c9-07236982b712",
+		"name": "express產生器",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "新增單筆",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"content\" : \"heroku 新增\",\r\n    \"image\" : \"tets\",\r\n    \"name\" : \"穗\",\r\n    \"likes\" : 87\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://intense-depths-79754.herokuapp.com/posts",
+					"protocol": "https",
+					"host": [
+						"intense-depths-79754",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "取的所有資料",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://intense-depths-79754.herokuapp.com/posts",
+					"protocol": "https",
+					"host": [
+						"intense-depths-79754",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "刪除所有資料",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://intense-depths-79754.herokuapp.com/posts",
+					"protocol": "https",
+					"host": [
+						"intense-depths-79754",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "刪除單筆資料",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://intense-depths-79754.herokuapp.com/posts/626a9bca91fb748392412314",
+					"protocol": "https",
+					"host": [
+						"intense-depths-79754",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"posts",
+						"626a9bca91fb748392412314"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "修改單筆資料",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"content\" : \"修改後內容\",\r\n    \"image\" : \"tets\",\r\n    \"name\" : \"穗~~~\",\r\n    \"likes\" : 123\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://intense-depths-79754.herokuapp.com/posts/626b4ad38d7f5a7993e899a9",
+					"protocol": "https",
+					"host": [
+						"intense-depths-79754",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"posts",
+						"626b4ad38d7f5a7993e899a9"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
