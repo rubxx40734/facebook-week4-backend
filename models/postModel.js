@@ -12,7 +12,7 @@ const postSchema = new mongoose.Schema(
           },
           createdAt: {
             type: Date,
-            default: Date.now.getDate + "-" + (date.getMonth + 1) + "-" + date.getFullYear,
+            default: Date.now,
           },
           user: {
               type: mongoose.Schema.ObjectId,
