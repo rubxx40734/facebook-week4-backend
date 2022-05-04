@@ -1,0 +1,58 @@
+{
+	"info": {
+		"_postman_id": "7352ce78-11a3-4719-b49a-d04da2fb5c33",
+		"name": "express-week4",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "新增關聯式資料(新增動態牆)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"content\": \"如果我是9你就是3 因為我除了你還是你\",\r\n    \"user\" : \"626e33435f91f1319c844b46\",\r\n    \"image\": \"https://images.unsplash.com/photo-1513279922550-250c2129b13a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fGxvdmV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://rocky-wave-99178.herokuapp.com/posts",
+					"protocol": "https",
+					"host": [
+						"rocky-wave-99178",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "取得資料庫資料(全體動態並且有篩選功能)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://rocky-wave-99178.herokuapp.com/posts",
+					"protocol": "https",
+					"host": [
+						"rocky-wave-99178",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
