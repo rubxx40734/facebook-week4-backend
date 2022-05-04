@@ -47,7 +47,14 @@ catch(error){
 // 新增單筆資料
 router.post('/', async (req, res, next) => {
     try{
-        const newPost = await Post.create(req.body)
+        const data = {
+            content: req.body.content,
+            image: req.body.image,
+            createdAt: req.body.createdAt,
+            user: req.body.user,
+            likes: req.body.likes
+        }
+        const newPost = await Post.create(data)
         res.status(200).json({
             "status" : "success",
             newPost
