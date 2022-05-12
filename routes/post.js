@@ -17,6 +17,7 @@ router.get('/', async (req, res, next)=> {
         select: 'name photo'
     }).sort(timeSort);
         res.status(200).json({
+            "status" : "success !",
             allPost
         })
 });
