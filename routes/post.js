@@ -1,7 +1,9 @@
 const Post = require('../models/postModel')
 const User = require('../models/userModel')
+const handleErrorAsync = require('../server/handleErrorAsync')
 var express = require('express');
 var router = express.Router();
+const appError = require('../service/appError')
 
 /* GET users listing. */
 // 取得所有資料
@@ -27,26 +29,17 @@ router.delete('/', async (req, res, next) => {
     })
   });
 // 刪除單筆資料
-router.delete('/:id', async (req, res, next) => {
-const id = req.params.id
-try {
+router.delete('/:id', handleErrorAsync(async (req, res, next) => {
+    const id = req.params.id
     const post = await Post.findByIdAndDelete(id)
     res.status(200).json({
         "status" : "success",
         post
     })
-}
-catch(error){
-    res.status(400).json({
-        "status" : "找無此路由 或 ID有誤",
-        "error" : error
-    })
-}
-});
+}));
 
 // 新增單筆資料
-router.post('/', async (req, res, next) => {
-    try{
+router.post('/', handleErrorAsync(async function (req, res, next)  {
         const data = {
             content: req.body.content,
             image: req.body.image,
@@ -54,36 +47,31 @@ router.post('/', async (req, res, next) => {
             user: req.body.user,
             likes: req.body.likes
         }
+        if(data.content == undefined || data.user == undefined){
+            return appError(400,'內容或user未填寫',next)
+        }
         const newPost = await Post.create(data)
         res.status(200).json({
             "status" : "success",
             newPost
         })
-    }
-    catch(error){
-        res.status(400).json({
-            "status" : "找無此路由 或 ID有誤",
-            "error" : error
-        })
-    }
-});
+}));
 // 修改單筆資料
-router.patch('/:id', async (req,res,next) => {
+router.patch('/:id', handleErrorAsync(async (req,res,next) => {
     const id = req.params.id
-    const data = req.body
+    const data = {
+        content: req.body.content,
+        image: req.body.image,
+        createdAt: req.body.createdAt,
+        user: req.body.user,
+        likes: req.body.likes
+    }
     console.log(id,data)
-    try{
         const newPost = await Post.findByIdAndUpdate(id,data)
         res.status(200).json({
             "status" : "success",
             newPost
         })
-    }
-    catch(error){
-        res.status(400).json({
-            "status" : "找無此路由 或 ID有誤",
-            "error" : error
-        }) 
-    }
-})
+    
+}))
 module.exports = router;
