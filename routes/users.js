@@ -61,11 +61,12 @@ router.get('/profile',isAuth, handleErrorAsync(async function(req, res, next){
 }))
 
 router.patch('/profile',isAuth, handleErrorAsync(async function(req, res, next){
-  const {name, sex} = req.body
-  res.status(200).json({
-    "status" : "success",
-    "user" : req.user
+  const {name, sex, photo} = req.body
+  const user = await User.findByIdAndUpdate({_id:req.user._id},{
+    name,sex,photo
   })
+  console.log(user)
+  generateSentJWT(user,200,res)
 }))
 
 router.post('/updatePassword',isAuth, handleErrorAsync(async function(req,res,next){
