@@ -4,7 +4,7 @@ const postSchema = new mongoose.Schema(
     {
         content: {
             type: String,
-            required: [true, 'Content 未填寫']
+            required: [true, 'Content 未填寫= =']
           },
           image: {
             type:String,
@@ -17,7 +17,7 @@ const postSchema = new mongoose.Schema(
           user: {
               type: mongoose.Schema.ObjectId,
               ref: "User",
-              required: [true, '貼文姓名未填寫']
+              // required: [true, '貼文姓名未填寫']
           },
           likes: {
               type:Number,

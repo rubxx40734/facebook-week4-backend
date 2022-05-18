@@ -12,7 +12,22 @@ const userSchema = new mongoose.Schema({
        lowercase: true,
         select: false
    },
-   photo : String
+   photo : String,
+   sex : {
+       type : String,
+       enum: ['male','female']
+   },
+   password : {
+       type : String,
+       required : [true,'請輸入密碼'],
+       minlength : 8,
+       select : false
+   },
+   createAt : {
+       type : Date,
+       default : Date.now
+   }
+
 })
 
 const User = mongoose.model('User',userSchema)
