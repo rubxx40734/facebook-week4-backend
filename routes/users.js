@@ -9,7 +9,7 @@ const { isAuth, generateSentJWT } = require('../service/auth')
 const router = express.Router();
 
 router.post('/sign_up',handleErrorAsync(async function(req, res, next){
-    let {email, password, confirmpassword, name, photo} = req.body
+    let {email, password, confirmpassword, name, photo, sex} = req.body
     // console.log(email,password,confirmpassword,name)
     //內容不可為空
     if(!email|| !password || !confirmpassword || !name){
@@ -31,7 +31,8 @@ router.post('/sign_up',handleErrorAsync(async function(req, res, next){
       email,
       password,
       name,
-      photo
+      photo,
+      sex
     })
     console.log(newUser)
     generateSentJWT(newUser,200,res)
@@ -59,6 +60,14 @@ router.get('/profile',isAuth, handleErrorAsync(async function(req, res, next){
    })
 }))
 
+router.patch('/profile',isAuth, handleErrorAsync(async function(req, res, next){
+  const {name, sex} = req.body
+  res.status(200).json({
+    "status" : "success",
+    "user" : req.user
+  })
+}))
+
 router.post('/updatePassword',isAuth, handleErrorAsync(async function(req,res,next){
    const { password, confirmpassword} = req.body
    if(!validator.isLength(password,{min:8})||!validator.isLength(confirmpassword,{min:8})) {
@@ -76,4 +85,6 @@ router.post('/updatePassword',isAuth, handleErrorAsync(async function(req,res,ne
    console.log(user)
    generateSentJWT(user,200,res)
 }))
+
+
 module.exports = router;
