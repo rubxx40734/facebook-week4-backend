@@ -8,7 +8,7 @@ const {  isAuth, generateSentJWT } = require('../service/auth')
 
 /* GET users listing. */
 // 取得所有資料
-router.get('/', async (req, res, next)=> {
+router.get('/', isAuth, async (req, res, next)=> {
     // 這邊作時間排序的篩選 (三元判斷式)
     const timeSort = req.query.timeSort == "asc" ? "createdAt":"-createdAt"
     // 這邊做關鍵字的搜尋 (三元判斷式&正規表達式)
@@ -23,7 +23,7 @@ router.get('/', async (req, res, next)=> {
         })
 });
 // 刪除所有資料
-router.delete('/', async (req, res, next) => {
+router.delete('/',isAuth, async (req, res, next) => {
     const post = await Post.deleteMany({})
     res.status(200).json({
         "status" : "success",
@@ -31,7 +31,7 @@ router.delete('/', async (req, res, next) => {
     })
   });
 // 刪除單筆資料
-router.delete('/post/:id', handleErrorAsync(async (req, res, next) => {
+router.delete('/post/:id',isAuth, handleErrorAsync(async (req, res, next) => {
     const id = req.params.id
     const post = await Post.findByIdAndDelete(id)
     res.status(200).json({
@@ -58,7 +58,7 @@ router.post('/', isAuth, handleErrorAsync(async function (req, res, next)  {
         })
 }));
 // 修改單筆資料
-router.patch('/:id', handleErrorAsync(async (req,res,next) => {
+router.patch('/:id', isAuth, handleErrorAsync(async (req,res,next) => {
     const id = req.params.id
     const data = {
         content: req.body.content,
