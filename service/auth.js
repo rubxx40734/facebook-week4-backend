@@ -4,7 +4,7 @@ const appError = require('./appError')
 const handleErrorAsync = require('../server/handleErrorAsync')
 const User = require('../models/userModel')
 
-const generateSentJWT = (user, statusCode, res) => {
+const generateSentJWT = async (user, statusCode, res) => {
     //產申JWT
     const token = jwt.sign({id:user._id,name:user.name},process.env.JWT_SECRET,{
      expiresIn:process.env.JWT_EXPIRES_DAY

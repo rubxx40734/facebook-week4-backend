@@ -62,6 +62,9 @@ router.get('/profile',isAuth, handleErrorAsync(async function(req, res, next){
 
 router.patch('/profile',isAuth, handleErrorAsync(async function(req, res, next){
   const {name, sex, photo} = req.body
+  if(name == '' || name == undefined){
+    return next(appError(400,'暱稱位填寫',next))
+  }
   const user = await User.findByIdAndUpdate({_id:req.user._id},{
     name,sex,photo
   })
