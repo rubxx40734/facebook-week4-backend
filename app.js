@@ -27,6 +27,7 @@ mongoose.connect(DB)
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const uploadRouter = require('./routes/upload')
 const postRouter = require('./routes/post');
 const { default: axios } = require('axios');
 var app = express();
@@ -45,6 +46,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/posts', postRouter)
+app.use('/upload',uploadRouter)
 // // catch 404 and forward to error handler (框架內建的)
 // app.use(function(req, res, next) {
 //   next(createError(404));
