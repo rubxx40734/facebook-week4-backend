@@ -2,57 +2,345 @@
 	"info": {
 		"_postman_id": "7352ce78-11a3-4719-b49a-d04da2fb5c33",
 		"name": "express-week4",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19482926"
 	},
 	"item": [
 		{
-			"name": "新增關聯式資料(新增動態牆)",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"content\": \"如果我是9你就是3 因為我除了你還是你\",\r\n    \"user\" : \"626e33435f91f1319c844b46\",\r\n    \"image\": \"https://images.unsplash.com/photo-1513279922550-250c2129b13a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fGxvdmV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "貼文相關",
+			"item": [
+				{
+					"name": "新增關聯式資料(新增動態牆)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODQ5N2UxZjVhMDBhY2NmMzE4ODM0YiIsIm5hbWUiOiJwZXRlciIsImlhdCI6MTY1Mjg2MDIyOCwiZXhwIjoxNjU1NDUyMjI4fQ.5hJ5pT_j9hJqLqwapvbaxASmrR8XkzjSNSFP5grFS0g",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"如果我是9 你就是3 因為我除了你還是你\",\r\n    \"image\": \"https://images.unsplash.com/photo-1513279922550-250c2129b13a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fGxvdmV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://rocky-wave-99178.herokuapp.com/posts",
+							"protocol": "https",
+							"host": [
+								"rocky-wave-99178",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"posts"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "https://rocky-wave-99178.herokuapp.com/posts",
-					"protocol": "https",
-					"host": [
-						"rocky-wave-99178",
-						"herokuapp",
-						"com"
-					],
-					"path": [
-						"posts"
-					]
+				{
+					"name": "取得資料庫資料(全體動態並且有篩選功能)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODQ5N2UxZjVhMDBhY2NmMzE4ODM0YiIsIm5hbWUiOiJwZXRlciIsImlhdCI6MTY1Mjg2MDIyOCwiZXhwIjoxNjU1NDUyMjI4fQ.5hJ5pT_j9hJqLqwapvbaxASmrR8XkzjSNSFP5grFS0g",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://rocky-wave-99178.herokuapp.com/posts",
+							"protocol": "https",
+							"host": [
+								"rocky-wave-99178",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "刪除全部貼文",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://rocky-wave-99178.herokuapp.com/posts",
+							"protocol": "https",
+							"host": [
+								"rocky-wave-99178",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "刪除單筆貼文",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://rocky-wave-99178.herokuapp.com/posts/post/6283419c944dc54565692fdc",
+							"protocol": "https",
+							"host": [
+								"rocky-wave-99178",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"posts",
+								"post",
+								"6283419c944dc54565692fdc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "修改單筆貼文",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\" : \"測試修改\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://rocky-wave-99178.herokuapp.com/posts/62836886c4ef9e49efb7a9ab",
+							"protocol": "https",
+							"host": [
+								"rocky-wave-99178",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"posts",
+								"62836886c4ef9e49efb7a9ab"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "取得資料庫資料(全體動態並且有篩選功能)",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://rocky-wave-99178.herokuapp.com/posts",
-					"protocol": "https",
-					"host": [
-						"rocky-wave-99178",
-						"herokuapp",
-						"com"
-					],
-					"path": [
-						"posts"
-					]
+			"name": "使用者相關",
+			"item": [
+				{
+					"name": "註冊使用者",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"email\" : \"rubxx4074@gmail.com\",\r\n   \"password\" : \"bill6800\",\r\n   \"confirmpassword\": \"bill6800\",\r\n   \"name\" : \"小翔\",\r\n   \"photo\": \"https://images.unsplash.com/photo-1524250502761-1ac6f2e30d43?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8d29tYW58ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60\",\r\n   \"sex\" : \"female\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://rocky-wave-99178.herokuapp.com/users/sign_up",
+							"protocol": "https",
+							"host": [
+								"rocky-wave-99178",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"users",
+								"sign_up"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "登入使用者",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyN2Y1OWUzMWM5YWRhMmM5NTRkMDgwOSIsIm5hbWUiOiLph47ni5fkuIDomZ8iLCJpYXQiOjE2NTI1MTc4MjAsImV4cCI6MTY1NTEwOTgyMH0.y-d-0E8HfvB95Cf3Ufvl2KTo2ksjexWkLpZB5Pj6Ppc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyN2Y1OWUzMWM5YWRhMmM5NTRkMDgwOSIsIm5hbWUiOiLph47ni5fkuIDomZ8iLCJpYXQiOjE2NTI1MTc4MjAsImV4cCI6MTY1NTEwOTgyMH0.y-d-0E8HfvB95Cf3Ufvl2KTo2ksjexWkLpZB5Pj6Ppc",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"apple@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://rocky-wave-99178.herokuapp.com/users/sign_in",
+							"protocol": "https",
+							"host": [
+								"rocky-wave-99178",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"users",
+								"sign_in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "取得個人資料",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODQ5ODFjZjVhMDBhY2NmMzE4ODM0ZCIsIm5hbWUiOiLph47ni5fkuIDomZ8iLCJpYXQiOjE2NTI4NTcxNjQsImV4cCI6MTY1NTQ0OTE2NH0.9BYv58XgisUUftmMBtjujGn3wAYH6KIoq_7GokDAEkg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://rocky-wave-99178.herokuapp.com/users/profile",
+							"protocol": "https",
+							"host": [
+								"rocky-wave-99178",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"users",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "修改使用者密碼",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODQ5ODFjZjVhMDBhY2NmMzE4ODM0ZCIsIm5hbWUiOiLph47ni5fkuIDomZ8iLCJpYXQiOjE2NTI4NTcxNjQsImV4cCI6MTY1NTQ0OTE2NH0.9BYv58XgisUUftmMBtjujGn3wAYH6KIoq_7GokDAEkg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"123456789\",\r\n    \"confirmpassword\" : \"123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://rocky-wave-99178.herokuapp.com/users/updatePassword",
+							"protocol": "https",
+							"host": [
+								"rocky-wave-99178",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"users",
+								"updatePassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "更新使用者資料",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODQ5ODFjZjVhMDBhY2NmMzE4ODM0ZCIsIm5hbWUiOiLph47ni5fkuIDomZ8iLCJpYXQiOjE2NTI4NTkxNDksImV4cCI6MTY1NTQ1MTE0OX0.2-rWfwptTMe-Zpvv8nZ8WLkfGiSR_jS7X1Mpb-yrpYc",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"達爾3\",\r\n    \"sex\" : \"female\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://rocky-wave-99178.herokuapp.com/users/profile",
+							"protocol": "https",
+							"host": [
+								"rocky-wave-99178",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"users",
+								"profile"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		}
 	]
 }
