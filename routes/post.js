@@ -86,7 +86,7 @@ router.post('/:id/likes',isAuth, handleErrorAsync(async (req,res,next) => {
         {_id},
         { $addToSet : { likes: req.user.id} }
     )
-    const greatPostNum = greatPost.likes.length+1
+    const greatPostNum = await greatPost.likes.length
     res.status(200).json({
        "status":"success",
        "userId": req.user.id,
