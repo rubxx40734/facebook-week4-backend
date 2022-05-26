@@ -78,4 +78,36 @@ router.patch('/:id', isAuth, handleErrorAsync(async (req,res,next) => {
         })
     
 }))
+
+//新增讚數
+router.post('/:id/likes',isAuth, handleErrorAsync(async (req,res,next) => {
+    const _id = req.params.id
+    const greatPost = await Post.findOneAndUpdate(
+        {_id},
+        { $addToSet : { likes: req.user.id} }
+    )
+    const greatPostNum = greatPost.likes.length
+    res.status(200).json({
+       "status":"success",
+       "userId": req.user.id,
+       "postId" : _id,
+       "greateNum": greatPostNum
+    })
+}))
+//刪除讚數
+router.delete('/:id/likes',isAuth, handleErrorAsync(async (req,res,next) => {
+    const _id = req.params.id
+    const greatPost = await Post.findOneAndUpdate(
+        {_id},
+        { $pull : { likes: req.user.id} }
+    )
+    const greatPostNum = greatPost.likes.length
+    console.log('look1541653',greatPostNum)
+    res.status(200).json({
+       "status":"success",
+       "userId": req.user.id,
+       "postId" : _id,
+       "greateNum": greatPostNum
+    })
+}))
 module.exports = router;

@@ -14,9 +14,9 @@ router.post('/',isAuth, upload, handleErrorAsync(async (req,res,next) => {
        return next(appError(400,'您尚未上傳檔案',next))
     }
     const dimensions = sizeOf(req.files[0].buffer);
-    // if(dimensions.width !== dimensions.height) {
-    //     return next(appError(400,'圖片尺寸不符合 1:1 尺寸',next))
-    // }
+    if(dimensions.width !== dimensions.height) {
+        return next(appError(400,'圖片尺寸不符合 1:1 尺寸',next))
+    }
     const client = new ImgurClient({
         clientId: process.env.IMGUR_CLIENTID,
         clientSecret: process.env.IMGUR_CLIENT_SECRET,

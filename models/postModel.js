@@ -19,10 +19,13 @@ const postSchema = new mongoose.Schema(
               ref: "User",
               // required: [true, '貼文姓名未填寫']
           },
-          likes: {
-              type:Number,
-              default:0
+          likes: [
+            {
+              type: mongoose.Schema.ObjectId,
+              ref: "User",
             }
+          ]
+            
     },
     {
         versionKey : false
