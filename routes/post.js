@@ -4,7 +4,8 @@ const handleErrorAsync = require('../server/handleErrorAsync')
 const express = require('express');
 const router = express.Router();
 const appError = require('../service/appError')
-const {  isAuth, generateSentJWT } = require('../service/auth')
+const {  isAuth, generateSentJWT } = require('../service/auth');
+// const Post = require('../models/postModel');
 
 /* GET users listing. */
 // 取得所有資料
@@ -86,12 +87,12 @@ router.post('/:id/likes',isAuth, handleErrorAsync(async (req,res,next) => {
         {_id},
         { $addToSet : { likes: req.user.id} }
     )
-    const greatPostNum = await greatPost.likes.length
+    // const greatPostNum =  greatPost.likes.length
+    console.log('loooook',  greatPost )
     res.status(200).json({
        "status":"success",
        "userId": req.user.id,
-       "postId" : _id,
-       "greateNum": greatPostNum
+       "postId" : _id
     })
 }))
 //刪除讚數
@@ -108,6 +109,16 @@ router.delete('/:id/likes',isAuth, handleErrorAsync(async (req,res,next) => {
        "userId": req.user.id,
        "postId" : _id,
        "greateNum": greatPostNum
+    })
+}))
+
+router.get('/:id/greateNum',isAuth, handleErrorAsync(async (req,res,next) => {
+    const Id = req.params.id
+    const Detail = await Post.find({Id})
+    console.log(Detail)
+    res.status(200).json({
+        "status" : "success",
+        "greateNum" : Detail[0].likes.length
     })
 }))
 module.exports = router;
