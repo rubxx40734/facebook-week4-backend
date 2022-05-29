@@ -111,14 +111,17 @@ router.delete('/:id/likes',isAuth, handleErrorAsync(async (req,res,next) => {
        "greateNum": greatPostNum
     })
 }))
-
+//取的誰案讚資訊
 router.get('/:id/greateNum',isAuth, handleErrorAsync(async (req,res,next) => {
     const Id = req.params.id
-    const Detail = await Post.find({Id})
+    const Detail = await Post.find({Id}).populate({
+        path: 'likes',
+        select : 'name photo'
+    })
     console.log(Detail)
     res.status(200).json({
         "status" : "success",
-        "greateNum" : Detail[0].likes.length
+        "greateNum" : Detail
     })
 }))
 module.exports = router;
