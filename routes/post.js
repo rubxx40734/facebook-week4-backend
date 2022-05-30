@@ -8,7 +8,7 @@ const {  isAuth, generateSentJWT } = require('../service/auth');
 // const Post = require('../models/postModel');
 
 /* GET users listing. */
-// 取得所有資料
+// 取得所有貼文資料
 router.get('/', isAuth, async (req, res, next)=> {
     // 這邊作時間排序的篩選 (三元判斷式)
     const timeSort = req.query.timeSort == "asc" ? "createdAt":"-createdAt"
@@ -23,6 +23,18 @@ router.get('/', isAuth, async (req, res, next)=> {
             allPost
         })
 });
+
+//取的個人貼文
+router.get('/user/:id', handleErrorAsync(async (req,res,next) => {
+    const userId = req.params.id
+    const personPost = await Post.find({user:userId})
+
+    res.status(200).json({
+        "status" : "success",
+        "post" : personPost
+    })
+
+}))
 // 刪除所有資料
 router.delete('/',isAuth, async (req, res, next) => {
     const post = await Post.deleteMany({})
@@ -111,7 +123,7 @@ router.delete('/:id/likes',isAuth, handleErrorAsync(async (req,res,next) => {
        "greateNum": greatPostNum
     })
 }))
-//取的誰案讚資訊
+//取的誰按讚資訊
 router.get('/:id/greateNum',isAuth, handleErrorAsync(async (req,res,next) => {
     const Id = req.params.id
     console.log('loooookthis',Id)
