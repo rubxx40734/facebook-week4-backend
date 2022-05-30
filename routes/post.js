@@ -27,7 +27,10 @@ router.get('/', isAuth, async (req, res, next)=> {
 //取的個人貼文
 router.get('/user/:id', handleErrorAsync(async (req,res,next) => {
     const userId = req.params.id
-    const personPost = await Post.find({user:userId})
+    const personPost = await Post.find({user:userId}).populate({
+        path: 'user',
+        select: 'name photo'
+    })
 
     res.status(200).json({
         "status" : "success",
