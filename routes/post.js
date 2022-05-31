@@ -1,5 +1,6 @@
 const Post = require('../models/postModel')
 const User = require('../models/userModel')
+const Comment = require('../models/commentModel')
 const handleErrorAsync = require('../server/handleErrorAsync')
 const express = require('express');
 const router = express.Router();
@@ -17,6 +18,9 @@ router.get('/', isAuth, async (req, res, next)=> {
     const allPost = await Post.find(q).populate({
         path: 'user',
         select: 'name photo'
+    }).populate({
+        path : 'comments',
+        select : 'comment user createdAt'
     }).sort(timeSort);
         res.status(200).json({
             "status" : "success !",
@@ -30,6 +34,9 @@ router.get('/user/:id', handleErrorAsync(async (req,res,next) => {
     const personPost = await Post.find({user:userId}).populate({
         path: 'user',
         select: 'name photo'
+    }).populate({
+        path : 'comments',
+        select : 'comment user createdAt'
     })
 
     res.status(200).json({
@@ -138,6 +145,22 @@ router.get('/:id/greateNum',isAuth, handleErrorAsync(async (req,res,next) => {
     res.status(200).json({
         "status" : "success",
         "greateNum" : Detail
+    })
+}))
+//新增留言
+router.post('/:id/comment',isAuth, handleErrorAsync(async (req,res,next) => {
+    const post = req.params.id
+    const user = req.user.id
+    const comment = req.body.comment
+    console.log(post,user,comment)
+    const newComment = await Comment.create({
+        post,
+        user,
+        comment
+    })
+    res.status(200).json({
+        "status" : "success",
+        newComment
     })
 }))
 module.exports = router;
