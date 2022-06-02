@@ -5,7 +5,7 @@ const handleErrorAsync = require('../server/handleErrorAsync')
 const express = require('express');
 const router = express.Router();
 const appError = require('../service/appError')
-const {  isAuth, generateSentJWT } = require('../service/auth');
+const {  isAuth } = require('../service/auth');
 // const Post = require('../models/postModel');
 
 /* GET users listing. */

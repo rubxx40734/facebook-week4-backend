@@ -19,8 +19,8 @@ router.post('/sign_up',handleErrorAsync(async function(req, res, next){
     if( password !== confirmpassword) {
       return next(appError(400,'確認密碼不一致!',next))
     }
-    if(!validator.isLength(password,{min:8})){
-       return next(appError(400,'密碼少於8碼!',next))
+    if(!validator.isLength(password,{min:8}) || !validator.matches(password, /[a-z]/,/[A-Z]/)){
+       return next(appError(400,'密碼需大於8碼且包含英文!',next))
     }
     if(!validator.isEmail(email)){
       return next(appError(400,'信箱格式錯誤',next))
