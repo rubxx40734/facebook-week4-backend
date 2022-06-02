@@ -67,7 +67,7 @@ router.patch('/profile',isAuth, handleErrorAsync(async function(req, res, next){
   }
   const user = await User.findByIdAndUpdate({_id:req.user._id},{
     name,sex,photo
-  })
+  },{ runValidators: true } )
   console.log('看這裡',user)
   generateSentJWT(user,200,res)
 }))

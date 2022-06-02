@@ -80,7 +80,7 @@ const resErrorPro = function(err,res) {
   }else if(err.messageFormat == undefined) {
     res.status(500).json({
       "status" : "error 罐頭訊息",
-      "message" : "您的ID不存在><"
+      "message" : "您的帳號重複註冊或錯誤"
     })
   }
   else{
