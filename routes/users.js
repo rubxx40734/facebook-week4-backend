@@ -94,7 +94,7 @@ router.post('/updatePassword',isAuth, handleErrorAsync(async function(req,res,ne
 //取得我的按讚列表
 router.get('/getlikelist',isAuth, handleErrorAsync(async function(req,res,next){
   const userID = req.user.id
-  const likePost = await Post.find({like : {$in : userID}}).populate('user')
+  const likePost = await Post.find({likes : {$in : userID}}).populate('user')
   res.status(200).json({
     "status" : "success",
     "likePost" : likePost
