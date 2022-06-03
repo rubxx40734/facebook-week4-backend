@@ -5,7 +5,8 @@ const jwt = require('jsonwebtoken')
 const appError = require('../service/appError')
 const handleErrorAsync = require('../server/handleErrorAsync')
 const User = require('../models/userModel')
-const { isAuth, generateSentJWT } = require('../service/auth')
+const { isAuth, generateSentJWT } = require('../service/auth');
+const Post = require('../models/postModel');
 const router = express.Router();
 
 router.post('/sign_up',handleErrorAsync(async function(req, res, next){
@@ -90,5 +91,13 @@ router.post('/updatePassword',isAuth, handleErrorAsync(async function(req,res,ne
    generateSentJWT(user,200,res)
 }))
 
-
+//取得我的按讚列表
+router.get('/getlikelist',isAuth, handleErrorAsync(async function(req,res,next){
+  const userID = req.user.id
+  const likePost = await Post.find({like : {$in : userID}}).populate('user')
+  res.status(200).json({
+    "status" : "success",
+    "likePost" : likePost
+  })
+}))
 module.exports = router;

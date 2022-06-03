@@ -21,13 +21,8 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"content\": \"如果我是9 你就是3 因為我除了你還是你\",\r\n    \"image\": \"https://images.unsplash.com/photo-1513279922550-250c2129b13a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fGxvdmV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+							"mode": "formdata",
+							"formdata": []
 						},
 						"url": {
 							"raw": "https://rocky-wave-99178.herokuapp.com/posts",
@@ -141,6 +136,42 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "新增imgur",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODQ5ODFjZjVhMDBhY2NmMzE4ODM0ZCIsIm5hbWUiOiLph47ni5fkuIDomZ8iLCJpYXQiOjE2NTI4NTcxNjQsImV4cCI6MTY1NTQ0OTE2NH0.9BYv58XgisUUftmMBtjujGn3wAYH6KIoq_7GokDAEkg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "imgur",
+									"type": "file",
+									"src": "/D:/Bill.Cheng/桌面/messageImage_1652868286725.jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://rocky-wave-99178.herokuapp.com/upload",
+							"protocol": "https",
+							"host": [
+								"rocky-wave-99178",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"upload"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -154,7 +185,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n   \"email\" : \"rubxx4074@gmail.com\",\r\n   \"password\" : \"bill6800\",\r\n   \"confirmpassword\": \"bill6800\",\r\n   \"name\" : \"小翔\",\r\n   \"photo\": \"https://images.unsplash.com/photo-1524250502761-1ac6f2e30d43?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8d29tYW58ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60\",\r\n   \"sex\" : \"female\"\r\n}",
+							"raw": "{\r\n   \"email\" : \"apple78@gmail.com\",\r\n   \"password\" : \"12345678pp\",\r\n   \"confirmpassword\": \"12345678pp\",\r\n   \"name\" : \"阿翔\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -335,6 +366,162 @@
 							"path": [
 								"users",
 								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "取得個人貼文",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://rocky-wave-99178.herokuapp.com/posts/user/628498caf5a00accf3188351",
+							"protocol": "https",
+							"host": [
+								"rocky-wave-99178",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"posts",
+								"user",
+								"628498caf5a00accf3188351"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "新增讚跟取消讚",
+			"item": [
+				{
+					"name": "點個讚",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODQ5OGNhZjVhMDBhY2NmMzE4ODM1MSIsIm5hbWUiOiLlsI_nqZciLCJpYXQiOjE2NTM1NDU0MzIsImV4cCI6MTY1NjEzNzQzMn0.AW1hR1m_aCpMkaJRdCtJhn3hqBfh0YSepflJiAu0_Jw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\" : \"測試按讚用的\",\r\n    \"image\" : \"https://images.unsplash.com/photo-1597633425046-08f5110420b5?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fGRvZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://rocky-wave-99178.herokuapp.com/posts/id/likes",
+							"protocol": "https",
+							"host": [
+								"rocky-wave-99178",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"posts",
+								"id",
+								"likes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "取消讚",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODQ5OGNhZjVhMDBhY2NmMzE4ODM1MSIsIm5hbWUiOiLlsI_nqZciLCJpYXQiOjE2NTM1NDU0MzIsImV4cCI6MTY1NjEzNzQzMn0.AW1hR1m_aCpMkaJRdCtJhn3hqBfh0YSepflJiAu0_Jw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://rocky-wave-99178.herokuapp.com/posts/id/likes",
+							"protocol": "https",
+							"host": [
+								"rocky-wave-99178",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"posts",
+								"id",
+								"likes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "取得讚數詳細資訊",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOTlhOGVhMzVjZDg5ZDI0YzAzOWM4OSIsIm5hbWUiOiLlsI_lsI_nqZciLCJpYXQiOjE2NTQyMzc2MjYsImV4cCI6MTY1NjgyOTYyNn0.Uqq1dSa-gtAzO0pP7wWXRctHMsJEJ4mluDeGRjvJgV8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://rocky-wave-99178.herokuapp.com/users/getlikelist",
+							"protocol": "https",
+							"host": [
+								"rocky-wave-99178",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"users",
+								"getlikelist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "新增留言功能",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODQ5OGNhZjVhMDBhY2NmMzE4ODM1MSIsIm5hbWUiOiLlsI_nqZciLCJpYXQiOjE2NTM1NDU0MzIsImV4cCI6MTY1NjEzNzQzMn0.AW1hR1m_aCpMkaJRdCtJhn3hqBfh0YSepflJiAu0_Jw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"comment\" : \"test留言1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://rocky-wave-99178.herokuapp.com/posts/628f4680d65a54ed0b7545a2/comment",
+							"protocol": "https",
+							"host": [
+								"rocky-wave-99178",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"posts",
+								"628f4680d65a54ed0b7545a2",
+								"comment"
 							]
 						}
 					},
