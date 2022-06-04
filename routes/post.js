@@ -45,6 +45,16 @@ router.get('/user/:id', handleErrorAsync(async (req,res,next) => {
     })
 
 }))
+
+//取得單一貼文
+router.get('/:id', handleErrorAsync(async (req,res,next) => {
+    const postId = req.params.id
+    const onePost = await Post.find({_id : postId}).populate('user').populate('comments')
+    res.status(200).json({
+        "status" : "success",
+        post : onePost
+    })
+}))
 // 刪除所有資料
 router.delete('/',isAuth, async (req, res, next) => {
     const post = await Post.deleteMany({})
