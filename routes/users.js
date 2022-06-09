@@ -55,9 +55,11 @@ router.post('/sign_in', handleErrorAsync(async function(req, res, next){
 
 
 router.get('/profile',isAuth, handleErrorAsync(async function(req, res, next){
+   const followDetail = await User.find({_id:req.user.id}).populate('following.user')
    res.status(200).json({
      "status" : "success",
-     "user" : req.user
+     "user" : req.user,
+     "我追蹤名單" : followDetail
    })
 }))
 
@@ -101,3 +103,50 @@ router.get('/getlikelist',isAuth, handleErrorAsync(async function(req,res,next){
   })
 }))
 module.exports = router;
+
+//追蹤別人
+router.post('/:id/follow', isAuth, handleErrorAsync(async function(req,res,next){
+  if( req.params.id === req.user.id) {
+     return next(appError(400,'您不可追蹤自己',next))
+  }
+  await User.updateOne({
+    _id: req.params.id,
+    'folloewrs.user' : {$ne: req.user.id}
+  },{
+    $addToSet : {followers :{user: req.user.id } }
+  })
+
+  await User.updateOne({
+    _id: req.user.id,
+    'following.user' : {$ne: req.params.id}
+  },{
+    $addToSet: {following :{user: req.params.id} }
+  })
+
+  res.status(200).json({
+    "status": "success",
+    'message': '您以追蹤成功'
+  })
+}))
+
+//退別人追蹤
+router.delete('/:id/unfollow', isAuth, handleErrorAsync(async function (req,res,next){ 
+     if(req.params.id === req.user.id){
+        return next(appError(400,'您不可退自己追蹤',next))
+     }
+     await User.updateOne({
+       _id: req.params.id,
+     },{
+       $pull: {followers : {user: req.user.id}}
+     })
+
+     await User.updateOne({
+       _id: req.user.id,
+     },{
+       $pull : {following : {user: req.params.id} }
+     })
+     res.status(200).json({
+       "status" : "success",
+       "message" : "您已成功取消追蹤"
+     })
+ }))
