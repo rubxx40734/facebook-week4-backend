@@ -526,6 +526,62 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "追蹤朋友",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOTg1YTg4NWM0NjMyZWE4ZWRlMWJlNiIsIm5hbWUiOiLlravmgp_nqboiLCJpYXQiOjE2NTQ3NDY3NTIsImV4cCI6MTY1NzMzODc1Mn0.xuhL0XOcabzDOQICEqNdDoaGiw0CQMv1-7DosEcasE0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://rocky-wave-99178.herokuapp.com/users/6299a8ea35cd89d24c039c89/follow",
+							"protocol": "https",
+							"host": [
+								"rocky-wave-99178",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"users",
+								"6299a8ea35cd89d24c039c89",
+								"follow"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "取消追蹤",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOTg1YTg4NWM0NjMyZWE4ZWRlMWJlNiIsIm5hbWUiOiLlravmgp_nqboiLCJpYXQiOjE2NTQ3NDY3NTIsImV4cCI6MTY1NzMzODc1Mn0.xuhL0XOcabzDOQICEqNdDoaGiw0CQMv1-7DosEcasE0",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://rocky-wave-99178.herokuapp.com/users/6299a8ea35cd89d24c039c89/unfollow",
+							"protocol": "https",
+							"host": [
+								"rocky-wave-99178",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"users",
+								"6299a8ea35cd89d24c039c89",
+								"unfollow"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
