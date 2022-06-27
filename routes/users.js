@@ -16,6 +16,11 @@ router.post('/sign_up',handleErrorAsync(async function(req, res, next){
     if(!email|| !password || !confirmpassword || !name){
      return next(appError(400,'欄位未確實填寫',next))
     }
+    const checkRepeat = await User.findOne({email:email})
+    if(checkRepeat!==null){
+      return appError(400,'此信箱已有人註冊',next)
+    }
+    console.log('look', checkRepeat)
     //確認密碼是否一致
     if( password !== confirmpassword) {
       return next(appError(400,'確認密碼不一致!',next))
@@ -45,6 +50,9 @@ router.post('/sign_in', handleErrorAsync(async function(req, res, next){
       return next(appError(400,'密碼或帳號未填寫!',next))
     }
     const user = await User.findOne({email: email}).select('+password')
+    if(user == null) {
+      return appError(400,'您的帳號未存在',next)
+    }
     const auth = await bcrypt.compare(password, user.password)
     console.log(user, auth)
     if(!auth) {
