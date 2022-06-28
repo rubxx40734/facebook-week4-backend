@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
    },
    photo : {
         type: String,
-        default: 'https://unsplash.com/photos/d0oYF8hm4GI'
+        default: 'https://images.unsplash.com/photo-1620428268482-cf1851a36764?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8Y2FydG9vbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60'
    },
    sex : {
        type : String,
