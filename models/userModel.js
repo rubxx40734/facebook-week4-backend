@@ -12,7 +12,10 @@ const userSchema = new mongoose.Schema({
        lowercase: true,
         select: false
    },
-   photo : String,
+   photo : {
+        type: String,
+        default: 'https://imgur.com/PXzDEXS'
+   },
    sex : {
        type : String,
        enum: ['male','female']

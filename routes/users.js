@@ -78,15 +78,16 @@ router.patch('/profile',isAuth, handleErrorAsync(async function(req, res, next){
   }
   const user = await User.findByIdAndUpdate({_id:req.user._id},{
     name,sex,photo
-  },{ runValidators: true } )
+  },{ runValidators: true, new: true } )
   console.log('看這裡',user)
   generateSentJWT(user,200,res)
 }))
 
 router.post('/updatePassword',isAuth, handleErrorAsync(async function(req,res,next){
    const { password, confirmpassword} = req.body
-   if(!validator.isLength(password,{min:8})||!validator.isLength(confirmpassword,{min:8})) {
-      return next(appError(400,'您的密碼小於8碼',next))
+   if(!validator.isLength(password,{min:8})||!validator.isLength(confirmpassword,{min:8})
+     ||!validator.matches(password, /[a-z]/,/[A-Z]/)||!validator.matches(confirmpassword, /[a-z]/,/[A-Z]/)) {
+      return next(appError(400,'密碼需大於8碼且包含英文!',next))
    }
    if(password !== confirmpassword) {
      return next(appError(400,'您的密碼不一致',next))
